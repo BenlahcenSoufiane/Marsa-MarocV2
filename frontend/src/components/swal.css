@@ -1,0 +1,35 @@
+/* General styles for the popup */
+.swal-custom-popup {
+    padding: 20px;
+    width: 500px; /* Increased width for more space */
+  }
+  
+  /* Title customization */
+  .swal-custom-title {
+    font-size: 24px; /* Larger font size for the title */
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Custom input fields and select with larger size */
+  .swal-custom-input, .swal-custom-select {
+    padding: 10px 15px; /* Increased padding for larger input fields */
+    font-size: 16px; /* Larger font size for better readability */
+    height: 40px; /* Increased height for larger fields */
+    margin: 10px 0; /* Adjusted margin */
+    width: calc(100% - 30px); /* Full width minus padding */
+  }
+  
+  /* Custom confirm and cancel buttons */
+  .swal-custom-confirm {
+    background-color: #6c63ff;
+    padding: 10px 20px; /* Larger padding for buttons */
+    font-size: 16px; /* Larger font size for buttons */
+  }
+  
+  .swal-custom-cancel {
+    background-color: #ff6b6b;
+    padding: 10px 20px; /* Larger padding for buttons */
+    font-size: 16px; /* Larger font size for buttons */
+  }
+  

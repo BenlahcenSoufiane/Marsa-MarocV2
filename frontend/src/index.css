@@ -10,6 +10,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    url('./images/lib.png');
+  background-position: center;
+  background-size: cover;
+ 
+  justify-content: center;
+ 
+  padding-left: 20px;
+  position: relative;
 }
 
 code {

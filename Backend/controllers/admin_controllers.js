@@ -39,6 +39,10 @@ const signup = async (req, res) => {
         console.log('User not found:', admin);
         return res.status(404).json({ success: false, message: 'Admin not found' });
       }
+      else if(admin.stoped){
+        console.log('this a count is stoped');
+        return res.status(405).json({success:true ,message :' this acount is blocked'});
+      }
   
       console.log('Retrieved user from database:', admin.password); // For debugging
       
@@ -47,7 +51,7 @@ const signup = async (req, res) => {
         return res.status(400).json({ success: false, message: 'Password not provided' });
       }
       //NB: SHOULD ADD BYCRIPT LATER
-      const passwordMatch = (password === admin.password);
+      const passwordMatch = await bcrypt.compare(password,admin.password);
 
       console.log('Password match:', passwordMatch); // For debugging
       
@@ -56,7 +60,8 @@ const signup = async (req, res) => {
         return res.status(401).json({ success: false, message: 'Incorrect password' });
       }
   
-      const token = generateToken({ id: admin.id,username:admin.username });
+      const token = generateToken({ id: admin.id,username:admin.userName, stoped : admin.stoped,prv : admin.privilege});
+      console.log(token);
       console.log('User logged in successfully:', username); // For debugging
       res.status(200).json({ success: true, token}); // Include the role in the response
     } catch (error) {

@@ -2,8 +2,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../AuthPage.css';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const AuthPage = () => {
+    const showAlert = () => {
+        Swal.fire({
+          icon: 'info', // Use 'info' for a different style, or you can use 'custom' for custom icons
+          title: 'Oops...',
+          text: "your acount is stoped!",
+          footer: '<span style="color: gray;">Please try again later.</span>',
+          // URL to your custom sad icon
+        });
+      };
     const [isSignUp, setIsSignUp] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,7 +31,7 @@ const AuthPage = () => {
         e.preventDefault();
         if (isSignUp) {
             fetch('http://localhost:3000/signup', {
-                method: 'POST',
+                method: 'POST', 
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password, role })
             })
@@ -49,12 +60,19 @@ const AuthPage = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
             })
-                .then(res => res.json())
+                .then(res=>{
+                    if (res.status===405){
+                        showAlert()
+                    }
+                    return res.json()
+                })
                 .then(data => {
                     if (data.success && data.token) {
                         localStorage.setItem('token', data.token);
                         navigate('/Dashboard');
-                    } else {
+                    } 
+                    
+                    else {
                         alert('Invalid credentials');
                     }
                 })

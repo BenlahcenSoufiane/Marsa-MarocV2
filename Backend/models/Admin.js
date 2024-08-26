@@ -4,27 +4,28 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelize');
 
 const Admin = sequelize.define('Admin', {
-
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  username: {
+  userName: {
     type: DataTypes.STRING,
+    allowNull: false,
+  },
+  mail: {
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
-    allowNull: false
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
-  prev: {
-    type: DataTypes.SMALLINT,
-    allowNull: false
+  privilege: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
   },
-}, {
-  timestamps: true
+  stoped :{
+    type:DataTypes.BOOLEAN,
+    allowNull:false,
+    defaultValue: true,
+  }
 });
 
 module.exports = Admin;

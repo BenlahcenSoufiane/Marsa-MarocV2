@@ -247,11 +247,6 @@ const exportUsers = async (req, res) => {
       res.status(500).json({ error: 'An error occurred while exporting users.' });
   }
 };
-
-
-
-
-
   module.exports = {
     exportUsers,
     signup,

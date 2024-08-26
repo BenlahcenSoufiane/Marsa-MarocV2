@@ -12,8 +12,12 @@ const User = require('./models/User');
 const Admin = require('./models/Admin');
 
 
+
 const userRoutes = require('./routes/user_routes')
 const authRoutes = require('./routes/auth_routes');
+const addAdmintRouter=require('./routes/admin_route');
+
+
 const app = express();
 
 const PORT =  3000;
@@ -33,6 +37,7 @@ sequelize.sync({ alter: true })
 
   app.use('', authRoutes);
   app.use('', userRoutes);
+  app.use('',addAdmintRouter);
 
 
 

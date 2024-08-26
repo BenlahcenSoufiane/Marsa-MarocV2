@@ -8,15 +8,21 @@ import '../App.css'; // Import the CSS file for Navbar styling
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  console.log(token);
   let username;
   let id;
-
+  let stoped;
+  let prv;
+  
   if (token) {
     try {
       const decodedToken = jwtDecode(token); // Use the correct named function
       username = decodedToken.username;
       id = decodedToken.id;
-      console.log('USERNAME AND ID :' ,username,id);
+      stoped=decodedToken.stoped;
+      prv=decodedToken.prv;
+      console.log('USERNAME AND ID :' ,username,id,prv,stoped);
+      console.log({decodedToken});
     } catch (error) {
       console.error('Failed to decode token:', error);
     }
@@ -35,9 +41,9 @@ function Navbar() {
           <img src={logo} alt="Logo" className="logo-small" />
         </Link>
         <div className="flex space-x-8">
-          <Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/users">USERS</Link>
-          <Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/loans">ADMIN</Link>
-          <Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/dashboard">DASHBOARD</Link>
+         {prv ? (<Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/users">USERS</Link>) : console.log('you are note a roote')}
+        {prv ?(<Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/root">ADMIN</Link> ): console.log('your are note a admin master')}
+          {token ? (<Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/dashboard">DASHBOARD</Link>): console.log()}
           <Link className="text-gray-700 hover:border text-xl  hover:border-transparent px-8 py-3 rounded-lg hover:text-red-600 hover:bg-white font-bold no-underline" to="/About">ABOUT US</Link>
           
           
@@ -60,7 +66,7 @@ function Navbar() {
             </>
           ) : (
             <>
-              <Link className="text-white bg-[#d4af7a] border-transparent rounded px-4 py-2 font-bold no-underline" to="/AuthPage">Login</Link>
+              <Link className="text-white bg-[#d4af7a] border-transparent rounded px-4 py-2 font-bold no-underline" to="/">Login</Link>
             </>
           )}
         </div>

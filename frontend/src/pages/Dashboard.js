@@ -2,7 +2,9 @@ import React,{useState , useEffect} from 'react';
 import '../style.css';
 import { jwtDecode } from 'jwt-decode'; // Correct named impor
 
+
 import BookList from '../components/Details';
+import Footer from '../components/footer';
 
 
 function App() {
@@ -58,6 +60,7 @@ function App() {
         <p className="mx-10 mb-10 text-xl text-gray-500">{todayDate}</p>
         <BookList handleDownload={handleDownload} />
       </div>
+     
     </div>
   );
 }
